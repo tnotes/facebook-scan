@@ -17,23 +17,23 @@
 			}
 		},
 		created:async function(){
-			let {data} = await this.$axios.get('http://localhost:8080/api/status');
+			let {data} = await this.$axios.get('http://103.226.249.122:8080/api/status');
 			return this.turnon = data[0].status;
 		},
 		mounted:async function(){
 			let _ = this;
 			setInterval(async function(){
-				let {data} = await _.$axios.get('http://localhost:8080/api/scan');
+				let {data} = await _.$axios.get('http://103.226.249.122:8080/api/scan');
 				_.listEmail = data;
 			},1000)
 		},
 		methods:{
 			async turn(){
-			    await this.$axios.post('http://localhost:8080/api/email/autoscan',{turnon:this.turnon});	
+			    await this.$axios.post('http://103.226.249.122:8080/api/email/autoscan',{turnon:this.turnon});	
 			}
 		},
 		async asyncData({$axios}){
-			let {data} = await $axios.get('http://localhost:8080/api/scan');
+			let {data} = await $axios.get('http://103.226.249.122:8080/api/scan');
 			return {
 				listEmail:data
 			}
