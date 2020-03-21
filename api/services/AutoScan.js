@@ -12,9 +12,7 @@ let check_email = async email=>{
 let auto = async function(key){
 	let key_file = fs.readFileSync('./key.txt','UTF-8');
 	if(key_file !== key) return null;
-	console.log('key_file:'+key_file);
-	console.log('key:'+key);
-	console.log('running');
+	
 	try{
 		let status_document = await Status.find();
 		let {status} = status_document[0];

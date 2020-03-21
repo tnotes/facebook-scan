@@ -1,9 +1,9 @@
+
 module.exports = {
   server: {
-    port: 8080, // default: 3000
-    host: '0.0.0.0' // default: localhost
+    port:8080, // default: 3000
+    host: 'localhost' // default: localhost
   },
-  domain:'https://nhatro.ga',
   sms:{
     // Token send sms 
 

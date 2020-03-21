@@ -3,6 +3,7 @@
 		<el-form-item justify="left">
 			<TableData :listEmail="list_email"/>
 		</el-form-item>
+		
 		<el-form-item prop="list" label="Nhập danh sách Email (mỗi email 1 dòng)" label-width="auto" size="medium" :inline-message="false" show-message>
 			<el-input v-model="formData.list" type="textarea" :rows="20" :autosize="false" placeholder="username@example.com"></el-input>
 		</el-form-item>
@@ -29,7 +30,7 @@
 			}
 		},
 		created:async function(){
-			let {data} = await this.$axios.get('http://103.226.249.122:8080/api/email');
+			let {data} = await this.$axios.get('/api/email');
 			
 			this.list_email = data;
 		},
@@ -43,7 +44,7 @@
 					let list_email = split_email.filter(e=>e.includes('@'));
 					if(list_email.length === 0) return false;
 					for(let email of list_email){
-						let {data} = await this.$axios.post('http://103.226.249.122:8080/api/email',{email});
+						let {data} = await this.$axios.post('/api/email',{email});
 						this.$message({
 							message:'Đã nạp thành công '+email,
 							type:'success'

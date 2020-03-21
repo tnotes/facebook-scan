@@ -78,7 +78,7 @@
 		methods:{
 			async add_domain(){
 				if(!this.domain_add_value.includes('@')) return this.$message({message:'Phải nhập đúng định dạng @name.com',type:'error'})
-					let {data} = await this.$axios.post('http://103.226.249.122:8080/api/domain',{name:this.domain_add_value});
+					let {data} = await this.$axios.post('/api/domain',{name:this.domain_add_value});
 				this.domain.unshift(data);
 				
 			   this.$message({message:'Thêm '+this.domain_add_value+' thành công.',type:'success'});
@@ -86,13 +86,13 @@
 
 			},
 			async handleDelete(index,row){
-				await this.$axios.delete('http://103.226.249.122:8080/api/domain/'+row.id);
+				await this.$axios.delete('/api/domain/'+row.id);
 				this.domain = this.domain.filter(({id})=>id !== row.id);
 
 				return this.$message({message:'Đã xóa '+row.name,type:'success'})
 			},
 			async loadDomain(){
-				let {data} = await this.$axios.get('http://103.226.249.122:8080/api/domain');
+				let {data} = await this.$axios.get('/api/domain');
 				this.domain = data;
 			},
 			async filterDomain(index,command){
@@ -112,12 +112,12 @@
 				
 			},
 			loadCount:async function(command = ''){
-				let {data} = await this.$axios.get('http://103.226.249.122:8080/api/result/count?command='+command);
+				let {data} = await this.$axios.get('/api/result/count?command='+command);
 				return this.count = data;
 			},
 			loadData:async function(pagination = 1){
 
-				let {data} = await this.$axios.get('http://103.226.249.122:8080/api/result?limit=30&where={"email":{"contains":"'+this.command+'"}}&skip='+(30*(pagination-1)));
+				let {data} = await this.$axios.get('/api/result?limit=30&where={"email":{"contains":"'+this.command+'"}}&skip='+(30*(pagination-1)));
 				return this.data = data;
 			},
 			
@@ -149,7 +149,7 @@
 			download(hold){
 				this.$axios({
 					method: 'post',
-					url: 'http://103.226.249.122:8080/api/email/download',
+					url: '/api/email/download',
 					data:{domain:this.command,hold},
 					responseType: 'arraybuffer'
 				})

@@ -23,7 +23,8 @@
    <el-main>
 
 
-     <nuxt class="container"/>
+
+     <nuxt-child keep-alive :keep-alive-props="{ exclude: ['modal'] }" />
 
 
    </el-main>
@@ -39,14 +40,40 @@
         active_index:"",
       }
     },
+
     created:async function(){
-      if(this.$route.path === '/')  this.active_index = "1";
+      
+      if(this.$route.path === '/email-ngau-nhien')  this.active_index = "1";
       if(this.$route.path === '/nap-danh-sach') this.active_index = '3';
       if(this.$route.path === '/ket-qua') this.active_index = '2';
       
+    },
+    mounted:async function(){
+      await this.check_login();
+    },
+    methods:{
+      check_login:async function(){
+        function getCookie(cname) {
+          var name = cname + "=";
+          var decodedCookie = decodeURIComponent(document.cookie);
+          var ca = decodedCookie.split(';');
+          for(var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+              c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+              return c.substring(name.length, c.length);
+            }
+          }
+          return "";
+        };
+        let {data:{status}} = await this.$axios.get('/api/account/login?password='+getCookie('password'));
+        if(!status) {
+          return this.$router.push('/')
+        }
+      }
     }
   }
 </script>
 <style scoped>
-
-</style>

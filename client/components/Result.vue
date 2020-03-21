@@ -24,6 +24,7 @@
 	
 </template>
 <script>
+	
 	export default {
 		props:['data'],
 		data(){
@@ -34,7 +35,7 @@
 		},
 		methods:{
 			async AgreeRemove(index,row){
-				let {data} = await this.$axios.delete('http://103.226.249.122:8080/api/result/'+row.id);
+				let {data} = await this.$axios.delete('/api/result/'+row.id);
 				return this.data = this.data.filter(({id})=> row.id !== id);
 			},
 			

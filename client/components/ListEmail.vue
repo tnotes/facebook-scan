@@ -2,6 +2,7 @@
 	<div>
 		<el-button type="primary" @click="dialogTableVisible = true" icon="" :loading="false" :plain="false" :round="false" :circle="false" :autofocus="false" size="small" :disabled="false">Xem danh sách</el-button>
 		<el-dialog :title="listEmail.length+ ' email có sẵn'" :visible.sync="dialogTableVisible" :center="false" :fullscreen="false" top="15vh" width="30%">
+			<el-checkbox v-model="fb_scan" label="Quét riêng liên kết FB" :border="false" :checked="false" :disabled="false"></el-checkbox>
 			<el-table :data="listEmail" height="300" :border="false" :highlight-current-row="false" :stripe="false" :lazy="false" :show-summary="false" tooltip-effect="light" style="width: 100%">
 				<el-table-column type="index" label="STT" align="left" :sortable="false" :fixed="false" width="60"/>
 				<el-table-column label="Email" prop="email" align="left" :sortable="false" :fixed="false" width="180"/>
@@ -19,20 +20,22 @@
 	</div>
 </template>
 <script>
+	
 	export default {
 		props:['listEmail'],
 		data(){
 			return {
 				dialogTableVisible:false,
 				index:null,
-				loading_scan_all:false
+				loading_scan_all:false,
+				fb_scan:false
 			}
 		},
 		
 		methods:{
 			async Scan(email){
-				let {data:{success,error}} = await this.$axios.post('http://c/api/email/scan',{email});
-				if(success) await this.$axios.post('http://103.226.249.122:8080/api/result',{email});
+				let {data:{success,error}} = await this.$axios.post('/api/email/scan',{email,fb_scan:this.fb_scan});
+				if(success) await this.$axios.post('/api/result',{email});
 				this.listEmail = this.listEmail.map(e=>{
 					if(e.email === email) e.result = success;
 					return e;

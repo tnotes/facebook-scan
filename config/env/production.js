@@ -1,3 +1,4 @@
+const {server:{port}} = require('../../nuxt.config.js');
 module.exports = {
   datastores: {
     default: {
@@ -50,7 +51,7 @@ module.exports = {
 
   },
 
-   port: 8080,
+   port,
 
   // ssl: undefined,
 

@@ -9,11 +9,19 @@
  module.exports = {
  	scan:async function(req,res){
  		try{
- 			let {email} = req.body;
+ 			let {email,fb_scan} = req.body;
  			if(!email) throw 'Email not valid';
  			await Email.destroy({email});
- 			let success = await CheckEmail(email);
- 			return res.send({success});
+ 			if(fb_scan){
+ 				let find_email = await Result.findOne({email});
+ 				let success = find_email ? true : false;
+ 				if(!success) success = await FB_scan(email);
+ 		 	    return res.send({success});
+ 			}else{
+ 				let success = await CheckEmail(email);
+ 				return res.send({success});
+ 			}
+ 			
  		}catch(error){
  			return res.send({success:null,error})
  		}
@@ -37,7 +45,7 @@
  			return res.send({success:true})
 
  		}catch(error){
- 			console.log(error);
+ 			
  			return res.send({success:null,error})
  		}
  	},

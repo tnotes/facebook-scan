@@ -11,8 +11,9 @@ import NuxtLoading from './components/nuxt-loading.vue'
 import '../node_modules/element-ui/lib/theme-chalk/index.css'
 
 import _6f6c098b from '../client/layouts/default.vue'
+import _77a66d33 from '../client/layouts/login.vue'
 
-const layouts = { "_default": _6f6c098b }
+const layouts = { "_default": _6f6c098b,"_login": _77a66d33 }
 
 export default {
   head: {"title":"Nuxt.js","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"Nuxt.js project"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"stylesheet","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Roboto:300,400,500,700|Material+Icons"}],"style":[],"script":[]},
