@@ -64,7 +64,7 @@
 				};
 				let {data:{status}} = await this.$axios.get('/api/account/login?password='+getCookie('password'));
 				if(status) {
-					return this.$router.push('email-ngau-nhien') ;
+					return this.$router.push('ngau-nhien') ;
 				}else{
 					return this.$router.push('/')
 				}

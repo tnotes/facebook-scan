@@ -3,7 +3,7 @@
 		
 		<el-menu-item index="1">
 			<i class="el-icon-setting"></i>
-			<el-link slot="title" :underline="false" href="/email-ngau-nhien">Email ngẫu nhiên</el-link>
+			<el-link slot="title" :underline="false" href="/ngau-nhien">Email ngẫu nhiên</el-link>
 		</el-menu-item>
 		<el-menu-item index="3" >
 			<i class="el-icon-document"></i>

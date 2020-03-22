@@ -1,7 +1,7 @@
 
 module.exports = {
   server: {
-    port:8080, // default: 3000
+    port:80, // default: 3000
     host: 'localhost' // default: localhost
   },
   sms:{

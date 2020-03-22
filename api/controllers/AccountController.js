@@ -13,6 +13,15 @@
  		let status = (req.query.password || '') == password_file;
  		return res.send({status});
 
+ 	},
+ 	'change-password':async function(req,res){
+ 		if(req.body.password){
+ 			fs.writeFileSync('./password.txt',req.body.password);
+ 			return res.send({status:true})
+ 		}else{
+ 			return res.send({status:false})
+ 		}
+ 		
  	}
  };
 
