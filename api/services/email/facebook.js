@@ -31,7 +31,6 @@ let filter_1 = async (email)=>{
 		};
 		let {headers,body} = await request(options);
 		let cookie = headers['set-cookie'].reduce(((previous,current)=>previous+current.split(';')[0]+';'),'');
-		console.log('hello world');
 		return {success:true,url:null,cookie};
 	}catch(e){
 		let location = e.response.headers.location;
