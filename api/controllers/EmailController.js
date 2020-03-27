@@ -39,6 +39,7 @@
  				let key = Math.floor(Math.random() * 10000000).toString();
  				fs.writeFileSync('./key.txt',key);
  				AutoScan(key);
+ 				AutoScan(key);
  			}else{
  				await Status.update({id}).set({status:false});
  			}
