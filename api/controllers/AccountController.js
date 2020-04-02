@@ -10,7 +10,8 @@
  	login:async function(req,res){
  		
  		let password_file = fs.readFileSync('./password.txt','UTF-8');
- 		let status = (req.query.password || '') == password_file;
+ 		
+ 		let status = (req.query.password.trim() || '') == password_file.trim();
  		return res.send({status});
 
  	},
