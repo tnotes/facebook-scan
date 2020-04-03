@@ -40,6 +40,8 @@
  				fs.writeFileSync('./key.txt',key);
  				AutoScan(key);
  				AutoScan(key);
+ 				AutoScan(key);
+ 				AutoScan(key);
  			}else{
  				await Status.update({id}).set({status:false});
  			}
